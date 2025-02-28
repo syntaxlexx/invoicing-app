@@ -57,6 +57,12 @@ class DashboardController extends Controller
             $start->subYear()->startOfMonth();
             $end->subYear()->endOfMonth();
         }
+        
+        if ($request->has('previous_year_plus_one')) {
+            $startDate->subYears(2)->startOfMonth();
+            $start->subYears(2)->startOfMonth();
+            $end->subYears(2)->endOfMonth();
+        }
 
         while ($monthCounter < 12) {
             array_push(

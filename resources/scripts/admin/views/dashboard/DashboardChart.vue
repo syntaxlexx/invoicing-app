@@ -1,12 +1,8 @@
 <template>
   <div>
-    <div
-      v-if="dashboardStore.isDashboardDataLoaded"
-      class="grid grid-cols-10 mt-8 bg-white rounded shadow"
-    >
+    <div v-if="dashboardStore.isDashboardDataLoaded" class="grid grid-cols-10 mt-8 bg-white rounded shadow">
       <!-- Chart -->
-      <div
-        class="
+      <div class="
           grid grid-cols-1
           col-span-10
           px-4
@@ -14,8 +10,7 @@
           lg:col-span-7
           xl:col-span-8
           sm:p-6
-        "
-      >
+        ">
         <div class="flex justify-between mt-1 mb-4 flex-col md:flex-row">
           <h6 class="flex items-center sw-section-title h-10">
             <BaseIcon name="ChartSquareBarIcon" class="text-primary-400 mr-1" />
@@ -23,30 +18,18 @@
           </h6>
 
           <div class="w-full my-2 md:m-0 md:w-40 h-10">
-            <BaseMultiselect
-              v-model="selectedYear"
-              :options="years"
-              :allow-empty="false"
-              :show-labels="false"
-              :placeholder="$t('dashboard.select_year')"
-              :can-deselect="false"
-            />
+            <BaseMultiselect v-model="selectedYear" :options="years" :allow-empty="false" :show-labels="false"
+              :placeholder="$t('dashboard.select_year')" :can-deselect="false" />
           </div>
         </div>
 
-        <LineChart
-          :invoices="dashboardStore.chartData.invoiceTotals"
-          :expenses="dashboardStore.chartData.expenseTotals"
-          :receipts="dashboardStore.chartData.receiptTotals"
-          :income="dashboardStore.chartData.netIncomeTotals"
-          :labels="dashboardStore.chartData.months"
-          class="sm:w-full"
-        />
+        <LineChart :invoices="dashboardStore.chartData.invoiceTotals" :expenses="dashboardStore.chartData.expenseTotals"
+          :receipts="dashboardStore.chartData.receiptTotals" :income="dashboardStore.chartData.netIncomeTotals"
+          :labels="dashboardStore.chartData.months" class="sm:w-full" />
       </div>
 
       <!-- Chart Labels -->
-      <div
-        class="
+      <div class="
           grid grid-cols-3
           col-span-10
           text-center
@@ -54,18 +37,14 @@
           lg:border-t-0 lg:text-right lg:col-span-3
           xl:col-span-2
           lg:grid-cols-1
-        "
-      >
+        ">
         <div class="p-6">
           <span class="text-xs leading-5 lg:text-sm">
             {{ $t('dashboard.chart_info.total_sales') }}
           </span>
           <br />
           <span class="block mt-1 text-xl font-semibold leading-8 lg:text-2xl">
-            <BaseFormatMoney
-              :amount="dashboardStore.totalSales"
-              :currency="companyStore.selectedCompanyCurrency"
-            />
+            <BaseFormatMoney :amount="dashboardStore.totalSales" :currency="companyStore.selectedCompanyCurrency" />
           </span>
         </div>
         <div class="p-6">
@@ -73,8 +52,7 @@
             {{ $t('dashboard.chart_info.total_receipts') }}
           </span>
           <br />
-          <span
-            class="
+          <span class="
               block
               mt-1
               text-xl
@@ -82,12 +60,8 @@
               leading-8
               lg:text-2xl
               text-green-400
-            "
-          >
-            <BaseFormatMoney
-              :amount="dashboardStore.totalReceipts"
-              :currency="companyStore.selectedCompanyCurrency"
-            />
+            ">
+            <BaseFormatMoney :amount="dashboardStore.totalReceipts" :currency="companyStore.selectedCompanyCurrency" />
           </span>
         </div>
         <div class="p-6">
@@ -95,8 +69,7 @@
             {{ $t('dashboard.chart_info.total_expense') }}
           </span>
           <br />
-          <span
-            class="
+          <span class="
               block
               mt-1
               text-xl
@@ -104,28 +77,21 @@
               leading-8
               lg:text-2xl
               text-red-400
-            "
-          >
-            <BaseFormatMoney
-              :amount="dashboardStore.totalExpenses"
-              :currency="companyStore.selectedCompanyCurrency"
-            />
+            ">
+            <BaseFormatMoney :amount="dashboardStore.totalExpenses" :currency="companyStore.selectedCompanyCurrency" />
           </span>
         </div>
-        <div
-          class="
+        <div class="
             col-span-3
             p-6
             border-t border-gray-200 border-solid
             lg:col-span-1
-          "
-        >
+          ">
           <span class="text-xs leading-5 lg:text-sm">
             {{ $t('dashboard.chart_info.net_income') }}
           </span>
           <br />
-          <span
-            class="
+          <span class="
               block
               mt-1
               text-xl
@@ -133,12 +99,8 @@
               leading-8
               lg:text-2xl
               text-primary-500
-            "
-          >
-            <BaseFormatMoney
-              :amount="dashboardStore.totalNetIncome"
-              :currency="companyStore.selectedCompanyCurrency"
-            />
+            ">
+            <BaseFormatMoney :amount="dashboardStore.totalNetIncome" :currency="companyStore.selectedCompanyCurrency" />
           </span>
         </div>
       </div>
@@ -164,8 +126,13 @@ const companyStore = useCompanyStore()
 const { t } = useI18n()
 const utils = inject('utils')
 const userStore = useUserStore()
-const years = ref( [{label: t('dateRange.this_year'), value: 'This year'}, {label: t( 'dateRange.previous_year'), value:
-  'Previous year'}])
+const years = ref([{ label: t('dateRange.this_year'), value: 'This year' }, {
+  label: t('dateRange.previous_year'), value:
+    'Previous year'
+}, {
+  label: t('dateRange.previous_year_plus_one'), value:
+    'Previous year + 1'
+}])
 const selectedYear = ref('This year')
 
 watch(
@@ -173,6 +140,9 @@ watch(
   (val) => {
     if (val === 'Previous year') {
       let params = { previous_year: true }
+      loadData(params)
+    } else if (val === 'Previous year + 1') {
+      let params = { previous_year_plus_one: true }
       loadData(params)
     } else {
       loadData()

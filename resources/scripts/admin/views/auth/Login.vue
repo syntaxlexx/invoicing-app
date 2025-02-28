@@ -124,7 +124,7 @@ async function onSubmit() {
 // Pre-fill demo credentials if in demo environment
 onMounted(() => {
   if (window.demo_mode) {
-    authStore.loginData.email = 'demo@invoiceshelf.com'
+    authStore.loginData.email = 'demo@acelords.com'
     authStore.loginData.password = 'demo'
   }
 })

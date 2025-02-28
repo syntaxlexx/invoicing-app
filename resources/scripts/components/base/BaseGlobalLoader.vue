@@ -47,7 +47,7 @@
           top-1/2
           left-1/2
         "
-        alt="InvoiceShelf Logo"
+        alt="AceLords Logo"
       />
     </div>
   </div>
