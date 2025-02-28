@@ -186,9 +186,9 @@
     "previous_month": "Previous Month",
     "previous_quarter": "Previous Quarter",
     "previous_year": "Previous Year",
-    "previous_year_plus_one": "Previous Year + 1",
-    "previous_year_plus_two": "Previous Year + 2",
-    "previous_year_plus_three": "Previous Year + 3",
+    "two_years_ago": "2 Years Ago",
+    "three_years_ago": "3 Years Ago",
+    "four_years_ago": "4 Years Ago",
     "custom": "Custom"
   },
   "customers": {

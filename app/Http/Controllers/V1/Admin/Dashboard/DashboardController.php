@@ -58,24 +58,23 @@ class DashboardController extends Controller
             $end->subYear()->endOfMonth();
         }
         
-        if ($request->has('previous_year_plus_one')) {
+        if ($request->has('two_years_ago')) {
             $startDate->subYears(2)->startOfMonth();
             $start->subYears(2)->startOfMonth();
             $end->subYears(2)->endOfMonth();
         }
 
-        if ($request->has('previous_year_plus_two')) {
+        if ($request->has('three_years_ago')) {
             $startDate->subYears(3)->startOfMonth();
             $start->subYears(3)->startOfMonth();
             $end->subYears(3)->endOfMonth();
         }
 
-        if ($request->has('previous_year_plus_three')) {
+        if ($request->has('four_years_ago')) {
             $startDate->subYears(4)->startOfMonth();
             $start->subYears(4)->startOfMonth();
             $end->subYears(4)->endOfMonth();
         }
-
 
         while ($monthCounter < 12) {
             array_push(
