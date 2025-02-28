@@ -132,6 +132,12 @@ const years = ref([{ label: t('dateRange.this_year'), value: 'This year' }, {
 }, {
   label: t('dateRange.previous_year_plus_one'), value:
     'Previous year + 1'
+}, {
+  label: t('dateRange.previous_year_plus_two'), value:
+    'Previous year + 2'
+}, {
+  label: t('dateRange.previous_year_plus_three'), value:
+    'Previous year + 3'
 }])
 const selectedYear = ref('This year')
 
@@ -143,6 +149,12 @@ watch(
       loadData(params)
     } else if (val === 'Previous year + 1') {
       let params = { previous_year_plus_one: true }
+      loadData(params)
+    } else if (val === 'Previous year + 2') {
+      let params = { previous_year_plus_two: true }
+      loadData(params)
+    } else if (val === 'Previous year + 3') {
+      let params = { previous_year_plus_three: true }
       loadData(params)
     } else {
       loadData()

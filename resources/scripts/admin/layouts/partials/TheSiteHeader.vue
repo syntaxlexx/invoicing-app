@@ -1,6 +1,5 @@
 <template>
-  <header
-    class="
+  <header class="
       fixed
       top-0
       left-0
@@ -15,11 +14,8 @@
       bg-gradient-to-r
       from-primary-500
       to-primary-400
-    "
-  >
-    <router-link
-      to="/admin/dashboard"
-      class="
+    ">
+    <router-link to="/admin/dashboard" class="
         float-none
         text-lg
         not-italic
@@ -31,16 +27,13 @@
         font-base
         hidden
         md:block
-      "
-    >
+      ">
       <img v-if="adminLogo" :src="adminLogo" class="h-6" />
       <MainLogo v-else class="h-6" light-color="white" dark-color="white" />
     </router-link>
 
     <!-- toggle button-->
-    <div
-      :class="{ 'is-active': globalStore.isSidebarOpen }"
-      class="
+    <div :class="{ 'is-active': globalStore.isSidebarOpen }" class="
         flex
         float-left
         p-1
@@ -53,21 +46,15 @@
         cursor-pointer
         md:hidden md:ml-0
         hover:bg-gray-100
-      "
-      @click.prevent="onToggle"
-    >
+      " @click.prevent="onToggle">
       <BaseIcon name="MenuIcon" class="!w-6 !h-6 text-gray-500" />
     </div>
 
     <ul class="flex float-right h-8 m-0 list-none md:h-9">
-      <li
-        v-if="hasCreateAbilities"
-        class="relative hidden float-left m-0 md:block"
-      >
+      <li v-if="hasCreateAbilities" class="relative hidden float-left m-0 md:block">
         <BaseDropdown width-class="w-48">
           <template #activator>
-            <div
-              class="
+            <div class="
                 flex
                 items-center
                 justify-center
@@ -78,46 +65,30 @@
                 bg-white
                 rounded
                 md:h-9 md:w-9
-              "
-            >
+              ">
               <BaseIcon name="PlusIcon" class="w-5 h-5 text-gray-600" />
             </div>
           </template>
 
           <router-link to="/admin/invoices/create">
-            <BaseDropdownItem
-              v-if="userStore.hasAbilities(abilities.CREATE_INVOICE)"
-            >
-              <BaseIcon
-                name="DocumentTextIcon"
-                class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"
-                aria-hidden="true"
-              />
+            <BaseDropdownItem v-if="userStore.hasAbilities(abilities.CREATE_INVOICE)">
+              <BaseIcon name="DocumentTextIcon" class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"
+                aria-hidden="true" />
               {{ $t('invoices.new_invoice') }}
             </BaseDropdownItem>
           </router-link>
           <router-link to="/admin/estimates/create">
-            <BaseDropdownItem
-              v-if="userStore.hasAbilities(abilities.CREATE_ESTIMATE)"
-            >
-              <BaseIcon
-                name="DocumentIcon"
-                class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"
-                aria-hidden="true"
-              />
+            <BaseDropdownItem v-if="userStore.hasAbilities(abilities.CREATE_ESTIMATE)">
+              <BaseIcon name="DocumentIcon" class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"
+                aria-hidden="true" />
               {{ $t('estimates.new_estimate') }}
             </BaseDropdownItem>
           </router-link>
 
           <router-link to="/admin/customers/create">
-            <BaseDropdownItem
-              v-if="userStore.hasAbilities(abilities.CREATE_CUSTOMER)"
-            >
-              <BaseIcon
-                name="UserIcon"
-                class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"
-                aria-hidden="true"
-              />
+            <BaseDropdownItem v-if="userStore.hasAbilities(abilities.CREATE_CUSTOMER)">
+              <BaseIcon name="UserIcon" class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"
+                aria-hidden="true" />
               {{ $t('customers.new_customer') }}
             </BaseDropdownItem>
           </router-link>
@@ -125,12 +96,10 @@
       </li>
 
       <li class="ml-2">
-        <GlobalSearchBar
-          v-if="
-            userStore.currentUser.is_owner ||
-            userStore.hasAbilities(abilities.VIEW_CUSTOMER)
-          "
-        />
+        <GlobalSearchBar v-if="
+          userStore.currentUser.is_owner ||
+          userStore.hasAbilities(abilities.VIEW_CUSTOMER)
+        " />
       </li>
 
       <li>
@@ -141,29 +110,20 @@
       <li class="relative block float-left ml-2">
         <BaseDropdown width-class="w-48">
           <template #activator>
-            <img
-              :src="previewAvatar"
-              class="block w-8 h-8 rounded md:h-9 md:w-9 object-cover"
-            />
+            <img :src="previewAvatar" class="block w-8 h-8 rounded md:h-9 md:w-9 object-cover" />
           </template>
 
           <router-link to="/admin/settings/account-settings">
             <BaseDropdownItem>
-              <BaseIcon
-                name="CogIcon"
-                class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"
-                aria-hidden="true"
-              />
+              <BaseIcon name="CogIcon" class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"
+                aria-hidden="true" />
               {{ $t('navigation.settings') }}
             </BaseDropdownItem>
           </router-link>
 
           <BaseDropdownItem @click="logout">
-            <BaseIcon
-              name="LogoutIcon"
-              class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"
-              aria-hidden="true"
-            />
+            <BaseIcon name="LogoutIcon" class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"
+              aria-hidden="true" />
             {{ $t('navigation.logout') }}
           </BaseDropdownItem>
         </BaseDropdown>
@@ -201,7 +161,7 @@ const adminLogo = computed(() => {
     return '/storage/' + globalStore.globalSettings.admin_portal_logo
   }
 
-  return false
+  return "https://x43mph8mpu.ufs.sh/f/4rTpTvA7QqKAzLc9NLmuorX4jdbNwm132PJcWAUyQLxkCZis"
 })
 
 function getDefaultAvatar() {
